@@ -3,13 +3,14 @@ import api from '../src/services/api'
 class App extends Component{
 
   state = {
-    devedores : [],
+    devedores: [],
   }
 
   async componentDidMount(){
     const response = await api.get('');
-
+    
     this.setState({ devedores: response.data});
+
   }
   render(){
 
@@ -19,6 +20,7 @@ class App extends Component{
       <div>
         <h1>Lista Devedores</h1>
         {console.log(devedores)}
+
          {devedores.map(devedor => (
            <li key={devedor.DadosListTitulos.dtr_id}>
               <h2>
