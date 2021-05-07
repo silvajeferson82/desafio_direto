@@ -1,40 +1,46 @@
 import React, { Component} from 'react'
-import api from '../src/services/api'
-class App extends Component{
+import Routes from './routes'
 
+
+function App(){
+  /*
   state = {
     devedores: [],
   }
 
-  async componentDidMount(){
-    const response = await api.get('');
-    
-    this.setState({ devedores: response.data});
-
+  componentDidMount(){
+    fetch(api.get(''))
+    .then(response  => response.json())
+    .then((data) => console.log(data))
   }
-  render(){
 
     const { devedores } = this.state;
+    console.log(devedores);
+    console.log(devedores.DadosListTitulos);*/
 
     return(
       <div>
         <h1>Lista Devedores</h1>
-        {console.log(devedores)}
+          {/* {devedores && devedores.DadosListTitulos.length > 0 && (
 
-         {devedores.map(devedor => (
+          )}
+          {!devedores && devedores.DadosListTitulos.length === 0 && (
+            <h1>Dados nao encontrados</h1>
+          )}
+         {devedores.DadosListTitulos.map(devedor => (
            <li key={devedor.DadosListTitulos.dtr_id}>
               <h2>
                 <strong>Nome</strong>
-                {devedor.DadosListTitulos.dtr_nomedevedor}
-                {devedor.DadosListTitulos.dtr_status}
-                {devedor.DadosListTitulos.dtr_estadodevedor}
+                {devedor.dtr_nomedevedor}
+                {devedor.dtr_status}
+                {devedor.dtr_estadodevedor}
               </h2>
            </li>
-          ))}
+          ))} */}
       </div>
      
     )
   }
-}
+
 
 export default App;
