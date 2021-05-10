@@ -6,19 +6,22 @@ const api =
 
 function Listar() {
   const [devedores, setDevedores] = useState([]);
+  const [devNome, setDevNome] = useState("");
 
   useEffect(() => {
     axios.get(api).then((response) => {
       setDevedores(response.data.DadosListTitulos);
     });
   }, []);
-  console.log(devedores);
+  //console.log(devedores);
+
+  useEffect(() => {}, []);
   return (
     <>
-      <h2>Teste de chamada API</h2>
+      <hr />
       <ul>
         {devedores.map((devedor) => (
-          <li key={devedor.index}>
+          <li key={devedor.dtr_id}>
             <table>
               <tr>
                 <td>NOME</td>
