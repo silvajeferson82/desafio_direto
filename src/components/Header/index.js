@@ -1,6 +1,11 @@
 import React from "react";
-import { Container } from "./styles";
+import Container  from "../Header/styles";
 
-export default function Header() {
-  return <Container></Container>;
+function Header() {
+  return (
+  <Container>
+    <h1>Lista Devedores</h1>
+  </Container>);
 }
+
+export default Header

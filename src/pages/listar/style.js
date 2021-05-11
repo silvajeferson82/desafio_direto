@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const Container = styled.header`
+const Container = styled.container`
   display: flex;
   justify-content: center;
   align-items: center;
