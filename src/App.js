@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Header } from "./components/Header";
 import Routes from "./routes";
-import axios from "axios";
 
 function App() {
   return (
-    <div>
+    <>
       <h1>Lista Devedores</h1>
       <BrowserRouter>
+        <Header />
         <Routes />
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

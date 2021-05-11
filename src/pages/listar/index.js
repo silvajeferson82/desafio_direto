@@ -6,7 +6,7 @@ const api =
 
 function Listar() {
   const [devedores, setDevedores] = useState([]);
-  const [devNome, setDevNome] = useState("");
+  const [buscaNome, setBuscaNome] = useState("");
 
   useEffect(() => {
     axios.get(api).then((response) => {
@@ -16,11 +16,23 @@ function Listar() {
   //console.log(devedores);
 
   useEffect(() => {}, []);
+
+  const nomeFiltro = devedores.filter((devedor) =>
+    devedor.dtr_nomedevedor.toLowerCase().includes(buscaNome.toLowerCase())
+  );
+
+  //console.log(buscaNome);
   return (
     <>
       <hr />
+      <input
+        type="text"
+        placeholder="Informe nome"
+        value={buscaNome}
+        onChange={(ev) => setBuscaNome(ev.target.value)}
+      />
       <ul>
-        {devedores.map((devedor) => (
+        {nomeFiltro.map((devedor) => (
           <li key={devedor.dtr_id}>
             <table>
               <tr>
