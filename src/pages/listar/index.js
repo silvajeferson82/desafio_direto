@@ -1,22 +1,30 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {Header, Container, Section} from '../../pages/listar/style';
-
-const api =
-  "https://nodeteste.protestodireto.com.br/dadosProtesto/ListaTitulos";
+import {Header, Container, Section, Table, Li } from '../../pages/listar/style';
+import api from "../../service/api";
 
 function Listar() {
   const [devedores, setDevedores] = useState([]);
+  const [copiaDevedores, setCopiaDevedores] = useState([]);
   const [buscaNome, setBuscaNome] = useState("");
   const [buscaStatus, setBuscaStatus] = useState("");
   const [buscaUf, setBuscaUf] = useState("");
 
   useEffect(() => {
-    axios.get(api).then((response) => {
+    api.get('dadosProtesto/ListaTitulos').then((response) => {
       setDevedores(response.data.DadosListTitulos);
     });
   }, []);
+
   
+  function setName() {
+    
+  }
+
+  function setStatus() {
+    
+  }
+
+
     let filtroBusca = devedores.filter((devedor) =>
     devedor.dtr_nomedevedor.toLowerCase().includes(buscaNome.toLowerCase())) 
     
@@ -28,16 +36,17 @@ function Listar() {
   return (
     <>
     <Header>
+      <div>
       <label>Filtrar por nome: </label>
-      <Section>
-      <formn>
         <input
           type="text"
           placeholder="Informe nome"
           value={buscaNome}
           onChange={(ev) => setBuscaNome(ev.target.value)}
         />
-          <label>Filtrar por Status: </label>
+      </div>
+      <div>
+      <label>Filtrar por Status: </label>
         <select 
           onChange={(ev) =>setBuscaStatus(ev.target.value)}>
             <option value="" selected>Selecionar</option>
@@ -61,34 +70,34 @@ function Listar() {
             <option value="DTR_CAC_EFT">CANCELAMETNO EFERTUADO</option>
             <option value="DTR_CAC_N_EFT">CANCELAMENTO NAO EFETUADO</option>
           </select> 
-          <label>Filtrar por UF: </label>
+      </div>
+      <div>
+      <label>Filtrar por UF: </label>
           <select
           onChange={(ev) => setBuscaUf(ev.target.value)}>
             <option value="None" selected>Selecionar</option>
             <option value="PA">PA</option>
             <option value="AP">AP</option>
           </select>
-      </formn>
-      </Section>
+      </div>
      
     </Header>
     <hr/>
     <Container>
     <Section>
-      <span>NOME</span>
-      <span>STATUS</span>
-      <span>ESTADO</span>
+      <h2>NOME</h2>
+      <h2>STATUS</h2>
+      <h2>ESTADO</h2>
     </Section>
-      <ul>
+        <ol>
         {filtroBusca.map((devedor) => (
-          <li key={devedor.dtr_id}>
-                <h3>{devedor.dtr_nomedevedor}</h3>
-                <h3>{devedor.dtr_status}</h3>
-                <h3>{devedor.dtr_estadodevedor}</h3>
-            <hr/>      
-          </li>
+          <Li key={devedor.dtr_id}>
+            <p>{devedor.dtr_nomedevedor}</p>
+            <p>{devedor.dtr_status}</p>
+            <p>{devedor.dtr_estadodevedor}</p>
+          </Li>
         ))}
-      </ul>
+        </ol>
     </Container>
     </>
   );
